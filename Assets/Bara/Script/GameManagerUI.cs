@@ -14,6 +14,8 @@ public class GameManagerUI : MonoBehaviour
     public RectTransform centerPoint;
     public Button nextButton;
     public GameObject neonConveyor;
+    public List<GameObject> iconPrefabs;  // Assign semua prefab icon asli + palsu di inspector
+
 
     [Header("UI Gameplay")]
     public List<Image> lifeImages; // nyawa di kanan atas
@@ -26,7 +28,10 @@ public class GameManagerUI : MonoBehaviour
     private int lives = 3;
     private int score = 0;
 
-    [HideInInspector] public bool currentLogoIsReal; // untuk random hasil logo
+    [HideInInspector]
+    public string scannedIconDataString = "";
+    public bool currentLogoIsReal;
+
 
     private void Awake()
     {
@@ -54,11 +59,7 @@ public class GameManagerUI : MonoBehaviour
     }
 
     // Dipanggil saat logo muncul
-    public void RandomizeLogoResult()
-    {
-        currentLogoIsReal = (Random.value > 0.5f);
-        Debug.Log("Logo is real? " + currentLogoIsReal);
-    }
+    
     public void EnableAcceptDeclineButtons()
     {
         acceptButton.interactable = true;
@@ -86,7 +87,7 @@ public class GameManagerUI : MonoBehaviour
         else
         {
             LoseLife();
-            activeBox.RemoveBox();
+            activeBox.MoveToMachineIn();
         }
     }
 

@@ -93,7 +93,7 @@ MonoBehaviour:
   logoPrefab: {fileID: 6439906167770989993, guid: 394865346a2d3a84b9ace870845b3b72,
     type: 3}
   logoOffset: {x: 0, y: 150}
-  logo: {fileID: 8545709972227031950, guid: 394865346a2d3a84b9ace870845b3b72, type: 3}
+  logo: {fileID: 6439906167770989993, guid: 394865346a2d3a84b9ace870845b3b72, type: 3}
 --- !u!114 &-21130934467668440
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -38,12 +38,21 @@ public class BoxUIController : MonoBehaviour
         if (isOpened) return;
         isOpened = true;
 
-        // Spawn logo sebagai child box supaya ikut posisi & hilang bersama box
-        logo = Instantiate(logoPrefab, rect);
-        logo.anchoredPosition = logoOffset;
+        // Pilih random prefab icon dari GameManagerUI
+        int idx = Random.Range(0, GameManagerUI.Instance.iconPrefabs.Count);
+        GameObject iconPrefab = GameManagerUI.Instance.iconPrefabs[idx];
+        // Spawn icon sebagai child box
+        GameObject iconObj = Instantiate(iconPrefab, rect);
+        RectTransform iconRect = iconObj.GetComponent<RectTransform>();
+        iconRect.anchoredPosition = logoOffset;
 
-        // Random hasil logo (benar/salah)
-        GameManagerUI.Instance.RandomizeLogoResult();
+        // Simpan data icon hasil spawn ke GameManagerUI supaya bisa diakses nanti
+        IconDataHolder dataHolder = iconObj.GetComponent<IconDataHolder>();
+        if (dataHolder != null)
+        {
+            GameManagerUI.Instance.scannedIconDataString = dataHolder.GetFormattedData();
+            GameManagerUI.Instance.currentLogoIsReal = dataHolder.isRealIcon;
+        }
     }
 
 
@@ -77,14 +86,14 @@ public class BoxUIController : MonoBehaviour
 
     IEnumerator MoveRightRoutine()
     {
-        Vector2 target = GameManagerUI.Instance.centerPoint.anchoredPosition + new Vector2(800, 0);
+        Vector2 target = GameManagerUI.Instance.centerPoint.anchoredPosition + new Vector2(1100, 0);
         while (Vector2.Distance(rect.anchoredPosition, target) > 1f)
         {
             rect.anchoredPosition = Vector2.MoveTowards(rect.anchoredPosition, target, moveSpeed * Time.deltaTime);
             yield return null;
         }
-        RemoveBox();
 
+        Destroy(gameObject);
         GameManagerUI.Instance.BoxProcessFinished();
     }
 }

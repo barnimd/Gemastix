@@ -7,7 +7,7 @@ public class LogoScanTarget : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (isScanned) return; // Sudah di-scan sebelumnya
+        if (isScanned) return;
 
         DragDropScanner scanner = eventData.pointerDrag.GetComponent<DragDropScanner>();
         if (scanner != null)
