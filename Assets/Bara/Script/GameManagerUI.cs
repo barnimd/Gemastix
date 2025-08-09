@@ -15,6 +15,7 @@ public class GameManagerUI : MonoBehaviour
     public Button nextButton;
     public GameObject neonConveyor;
     public List<GameObject> iconPrefabs;  // Assign semua prefab icon asli + palsu di inspector
+    public GameObject tabletPanel;
 
 
     [Header("UI Gameplay")]
@@ -44,7 +45,11 @@ public class GameManagerUI : MonoBehaviour
     {
         if (boxActive) return;
 
+        // Pastikan box di belakang tablet
+        Transform tabletTransform = tabletPanel.transform; // tabletPanel = panel tablet kamu
+        
         RectTransform newBox = Instantiate(boxPrefab, spawnPoint.position, Quaternion.identity, spawnPoint.parent);
+        newBox.SetSiblingIndex(tabletTransform.GetSiblingIndex());
         activeBox = newBox.GetComponent<BoxUIController>();
         activeBox.MoveToCenter(centerPoint.anchoredPosition);
 

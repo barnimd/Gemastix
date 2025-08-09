@@ -94,6 +94,7 @@ public class BoxUIController : MonoBehaviour
         }
 
         Destroy(gameObject);
+
         GameManagerUI.Instance.BoxProcessFinished();
     }
 }
