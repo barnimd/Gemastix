@@ -63,9 +63,9 @@ public class BoxUIController : MonoBehaviour
     private IEnumerator RemoveBoxAnimation()
     {
         // Animasi jatuh
-        float duration = 0.5f;
+        float duration = 2;
         Vector3 startPos = transform.localPosition;
-        Vector3 endPos = startPos + new Vector3(0, -500, 0);
+        Vector3 endPos = startPos + new Vector3(-1500, 0, 0);
 
         float time = 0;
         while (time < duration)
