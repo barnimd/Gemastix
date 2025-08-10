@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5890512888060351005}
   - component: {fileID: 8940196968798810245}
   m_Layer: 5
-  m_Name: facenuk 6
+  m_Name: instug palsu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e8423cd5e12f7aa47ad7f85d9d1181be, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6845652203a64764abbbc912f6770bc2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -102,10 +102,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7a75e0274d91604a973802292af0442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconName: Facenuk
-  id: 19451
-  source: marky
-  function: chaty
+  iconName: Instuk
+  id: 78676
+  source: mrk
+  function: ntrnd
   isRealIcon: 0
 --- !u!212 &8940196968798810245
 SpriteRenderer:
