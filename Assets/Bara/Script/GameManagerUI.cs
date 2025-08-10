@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManagerUI : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class GameManagerUI : MonoBehaviour
     public GameObject neonConveyor;
     public List<GameObject> iconPrefabs;  // Assign semua prefab icon asli + palsu di inspector
     public GameObject tabletPanel;
+    public GameObject gameOverPanel;
 
 
     [Header("UI Gameplay")]
@@ -28,6 +30,7 @@ public class GameManagerUI : MonoBehaviour
     private BoxUIController activeBox;
     private int lives = 3;
     private int score = 0;
+    private bool isGameOver = false;
 
     [HideInInspector]
     public string scannedIconDataString = "";
@@ -132,7 +135,11 @@ public class GameManagerUI : MonoBehaviour
     {
         scoreText.text = "Score: " + score;
     }
-
+    public void RestartGame()
+    {
+        Time.timeScale = 1f; // kembalikan waktu
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // reload scene
+    }
     private void LoseLife()
     {
         lives--;
@@ -143,6 +150,9 @@ public class GameManagerUI : MonoBehaviour
 
         if (lives <= 0)
         {
+            Time.timeScale = 0f; // hentikan waktu
+            gameOverPanel.SetActive(true);
+            isGameOver = true;
             Debug.Log("Game Over!");
             // TODO: buat panel game over
         }
