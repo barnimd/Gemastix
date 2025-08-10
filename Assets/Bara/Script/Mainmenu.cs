@@ -1,24 +1,38 @@
 using UnityEngine;
 using UnityEngine.SceneManagement; // untuk ganti scene
+using System.Collections; // untuk IEnumerator
 
 public class MainMenu : MonoBehaviour
 {
+    public AudioSource clickSound; // drag file AudioSource di Inspector
+
     // Fungsi untuk tombol Play
     public void PlayGame()
     {
-        // Ganti "GameScene" dengan nama scene gameplay kamu
-        SceneManager.LoadScene("Level");
+        StartCoroutine(PlaySoundAndChangeScene("Level"));
     }
 
     // Fungsi untuk tombol Exit
     public void ExitGame()
     {
-        Debug.Log("Keluar dari game...");
+        StartCoroutine(PlaySoundAndExit());
+    }
 
-        // Keluar dari aplikasi
+    private IEnumerator PlaySoundAndChangeScene(string MainMenu)
+    {
+        clickSound.Play();
+        yield return new WaitForSeconds(clickSound.clip.length); // tunggu sampai sound selesai
+        SceneManager.LoadScene(MainMenu);
+    }
+
+    private IEnumerator PlaySoundAndExit()
+    {
+        clickSound.Play();
+        yield return new WaitForSeconds(clickSound.clip.length);
+
+        Debug.Log("Keluar dari game...");
         Application.Quit();
 
-        // Kalau sedang di Unity Editor, ini untuk menghentikan Play Mode
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
